@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViaProtect Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Login Screen -->
+    <div id="login-screen" class="flex items-center justify-center h-screen">
+        <div class="bg-white p-8 rounded shadow-xl w-96 border-t-4 border-blue-600">
+            <h2 class="text-3xl font-extrabold mb-6 text-center text-gray-800">ViaProtect</h2>
+            <div class="space-y-4">
+                <input id="username" type="text" placeholder="Username" class="w-full p-3 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                <input id="password" type="password" placeholder="Password" class="w-full p-3 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                <button onclick="login()" class="w-full bg-blue-600 text-white p-3 rounded font-bold hover:bg-blue-700 transition">LOGIN</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Screen -->
+    <div id="dashboard-screen" class="hidden min-h-screen">
+        <nav class="bg-gray-900 p-4 text-white flex justify-between items-center shadow-lg">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-blue-500 rounded-lg"></div>
+                <h1 class="text-xl font-bold tracking-tight">ViaProtect <span class="text-blue-400">Admin</span></h1>
+            </div>
+            <div class="flex gap-4 items-center">
+                <button onclick="generateLicense()" class="bg-blue-600 px-4 py-2 rounded font-medium hover:bg-blue-500 transition shadow-md">+ Generate License</button>
+                <button onclick="logout()" class="text-gray-400 hover:text-white text-sm">Logout</button>
+            </div>
+        </nav>
+
+        <div class="p-8 max-w-7xl mx-auto">
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-gray-400 text-xs font-bold uppercase tracking-wider">Total Licenses</h3>
+                    <p id="stat-licenses" class="text-4xl font-black text-gray-800 mt-1">0</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-gray-400 text-xs font-bold uppercase tracking-wider">Active Users</h3>
+                    <p id="stat-active" class="text-4xl font-black text-green-600 mt-1">0</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-gray-400 text-xs font-bold uppercase tracking-wider">Security Threats</h3>
+                    <p id="stat-tamper" class="text-4xl font-black text-red-600 mt-1">0</p>
+                </div>
+            </div>
+
+            <!-- Content Tabs -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- License List -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="p-4 bg-gray-50 border-b border-gray-200">
+                        <h3 class="font-bold text-gray-700">License Management</h3>
+                    </div>
+                    <div class="overflow-x-auto max-h-[500px]">
+                        <table class="w-full text-left text-sm">
+                            <thead class="bg-gray-50 sticky top-0">
+                                <tr>
+                                    <th class="p-4 font-semibold text-gray-600">Key</th>
+                                    <th class="p-4 font-semibold text-gray-600">Device</th>
+                                    <th class="p-4 font-semibold text-gray-600">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="license-body" class="divide-y divide-gray-100">
+                                <!-- Data injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Violation Logs -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="p-4 bg-gray-50 border-b border-gray-200">
+                        <h3 class="font-bold text-gray-700">Recent Security Logs</h3>
+                    </div>
+                    <div class="overflow-x-auto max-h-[500px]">
+                        <table class="w-full text-left text-sm">
+                            <thead class="bg-gray-50 sticky top-0">
+                                <tr>
+                                    <th class="p-4 font-semibold text-gray-600">Type</th>
+                                    <th class="p-4 font-semibold text-gray-600">Device ID</th>
+                                    <th class="p-4 font-semibold text-gray-600">Time</th>
+                                </tr>
+                            </thead>
+                            <tbody id="logs-body" class="divide-y divide-gray-100">
+                                <!-- Data injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
